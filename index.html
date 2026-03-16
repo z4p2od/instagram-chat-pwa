@@ -61,9 +61,15 @@
   </div>
 
   <script>
-    // Short delay so the splash screen is visible, then redirect
+    // Use a user-initiated navigation via a clicked anchor to avoid
+    // iOS intercepting the URL as an app deep link
+    const a = document.createElement('a');
+    a.href = 'https://www.instagram.com/direct/inbox/';
+    a.target = '_self';
+    document.body.appendChild(a);
+
     setTimeout(() => {
-      window.location.replace('https://www.instagram.com/direct/inbox/');
+      a.click();
     }, 800);
   </script>
 
