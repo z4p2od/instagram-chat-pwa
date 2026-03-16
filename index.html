@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Instagram Chat</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="IG Chat" />
+  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    #loading {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      gap: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #999;
+      font-size: 14px;
+    }
+
+    #loading svg {
+      width: 48px;
+      height: 48px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="loading">
+    <!-- Instagram logo mark -->
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="20" height="20" rx="6" stroke="#333" stroke-width="1.8"/>
+      <circle cx="12" cy="12" r="4.5" stroke="#333" stroke-width="1.8"/>
+      <circle cx="17.5" cy="6.5" r="1" fill="#333"/>
+    </svg>
+    Opening chat...
+  </div>
+
+  <iframe
+    id="frame"
+    src="https://www.instagram.com/direct/inbox/"
+    allow="camera; microphone"
+    style="opacity:0"
+  ></iframe>
+
+  <script>
+    const frame = document.getElementById('frame');
+    const loading = document.getElementById('loading');
+
+    frame.addEventListener('load', () => {
+      frame.style.opacity = '1';
+      loading.style.display = 'none';
+    });
+  </script>
+
+</body>
+</html>
